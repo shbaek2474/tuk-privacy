@@ -48,20 +48,25 @@
 
 | 항목 | 내용 | 보관 기간 |
 | --- | --- | --- |
-| 초대 코드 | 코드의 해시값, 폰 이름, 만든 시각, 만료 시각, 사용 횟수 | 만료 후 30일 |
-| 연결된 폰 | 폰 이름, 연결 키의 해시값, 연결 시각, 연결 끊은 시각 | 연결을 끊고 30일 |
+| 초대 코드 | 코드의 해시값, 폰 이름, 사용량 묶음, 쓸 수 있는 횟수와 쓴 횟수, 하루 한도, 심사용 여부, 만든 시각, 만료 시각, 다 쓴 시각 | 만료 후 30일 |
+| 연결된 폰 | 폰 이름, 연결 키의 해시값, 사용량 묶음, 하루 한도, 관리자 여부, 연결 시각, 연결 끊은 시각 | 연결을 끊고 30일 |
 | 하루 사용량 | 폰 이름, 날짜, 호출 횟수(내용 없음) | 90일 |
-| 잘못된 코드 시도 | 접속 IP의 해시값, 틀린 횟수, 시작 시각 | 성공하면 즉시, 아니면 하루 |
+| 잘못된 코드 시도 | 접속 IP의 해시값, 틀린 횟수, 시작 시각. 그리고 IP 없이 전체 틀린 횟수만 세는 기록 하나 | 성공하면 즉시, 아니면 하루 |
 
-"해시값"은 원래 값을 알아낼 수 없게 바꾼 값입니다. 서버 기록(로그)은 기본적으로 남기지 않으며, 문제를 확인할 때만 폰 이름, 요청 종류, 결과 상태를 잠깐 봅니다. 서랍 내용은 기록에도 남지 않습니다.
+"해시값"은 서버만 아는 비밀값을 섞어서, 원래 값을 알아낼 수 없게 바꾼 값입니다.
+
+서버 기록(로그)은 저장하지 않습니다. 문제를 확인할 때만 실시간으로 폰 이름, 요청 종류, 결과 상태, 오류 종류, 요청 크기를 봅니다. 서랍 내용은 기록에도 남지 않습니다.
+
+툭 서버는 Cloudflare에서 돌아가므로, 앱이 서버에 접속할 때 Cloudflare가 접속 IP 주소를 받습니다. 툭은 이 IP를 저장하지 않지만, Cloudflare는 자체 정책에 따라 서비스 운영과 보안을 위해 처리할 수 있습니다.
 
 ## 4. 폰에서 다른 곳으로 직접 가는 정보
 
-- **링크 미리보기**: 던진 링크의 제목 등을 읽으려고 폰이 그 사이트에 직접 접속합니다. 이때 그 사이트는 이용자의 IP 주소를 볼 수 있습니다. 유튜브 링크는 YouTube에서 정보를 받아옵니다.
+- **링크 미리보기**: 던진 링크의 제목 등을 읽으려고 폰이 그 사이트에 직접 접속합니다. 링크의 대표 이미지와 유튜브 썸네일은 그 줄이 화면에 보일 때마다 그 사이트(유튜브는 YouTube 이미지 서버)에서 불러옵니다. 이때 그 사이트는 이용자의 IP 주소를 볼 수 있습니다.
 - **사진 위치를 주소로 바꾸기**: 사진에 위치가 있으면 폰 운영체제의 기능으로 주소를 찾습니다. 이때 좌표가 Apple(아이폰) 또는 Google(안드로이드)로 갑니다.
-- **캘린더(켠 경우)**: 약속의 제목, 시각, 장소, 툭으로 돌아오는 링크를 폰 캘린더에 넣습니다. 원문은 넣지 않습니다. 캘린더가 iCloud나 Google 계정과 동기화되어 있으면 이 내용도 Apple 또는 Google 서버로 동기화됩니다. 🔒 줄은 넣지 않습니다.
-- **알림**: 폰 안에서만 예약되는 알림입니다. 푸시 서버를 쓰지 않습니다. 잠금 화면에 알림 제목이 보일 수 있습니다.
-- **앱 업데이트 확인**: 앱이 새 버전을 확인하려고 Expo(EAS Update) 서버에 접속합니다. 이때 플랫폼, 앱 버전, 업데이트 경로, 설치마다 만들어지는 무작위 번호가 갑니다.
+- **지도에서 보기**: 줄 카드에서 "지도에서 보기"를 누르면 장소 이름이나 주소가 Apple 지도 또는 Google 지도로 갑니다.
+- **캘린더(켠 경우)**: 약속과 그날 할 일의 제목, 시각, 장소, 툭으로 돌아오는 링크를 폰 캘린더에 넣습니다. 원문은 넣지 않습니다. 캘린더가 iCloud나 Google 계정과 동기화되어 있으면 이 내용도 Apple 또는 Google 서버로 동기화됩니다. 🔒 줄은 넣지 않습니다.
+- **알림**: 폰 안에서만 예약되는 알림입니다. 푸시 서버를 쓰지 않습니다. 잠금 화면에 알림 내용이 보일 수 있습니다. 할 일과 약속 알림에는 그 줄의 제목이, 아침 브리핑에는 그날 줄의 제목 목록이, 이번 주 툭에는 정리 문장이 나옵니다. 잠금 화면에 보이지 않게 하려면 폰의 알림 설정에서 "미리보기 표시"를 끄면 됩니다.
+- **앱 업데이트 확인**: 앱이 새 버전을 확인하려고 Expo(EAS Update) 서버에 접속합니다. 이때 플랫폼, 앱 버전, 업데이트 경로, 지금 쓰는 업데이트 번호, 설치마다 만들어지는 무작위 번호가 갑니다.
 - **전체 내보내기**: 이용자가 직접 고른 곳으로만 파일을 보냅니다. 🔒 줄은 들어가지 않습니다.
 - **TestFlight(베타 테스트 중)**: 앱이 멈추면 Apple이 충돌 기록을 모으고, 테스터가 직접 보낸 피드백과 스크린샷을 운영자에게 전달합니다.
 
@@ -76,7 +81,7 @@
 | Anthropic, PBC | AI 정리와 답 만들기 | 2절의 내용 | 미국 |
 | Cloudflare, Inc. | 툭 서버 운영 | 2절과 3절의 내용 | 전 세계 데이터센터 |
 | Expo(650 Industries, Inc.) | 앱 업데이트 배포 | 4절의 업데이트 확인 정보 | 미국 |
-| Apple, Google | 주소 변환, 캘린더 동기화, TestFlight | 4절의 해당 정보 | 미국 등 |
+| Apple, Google | 주소 변환, 지도, 캘린더 동기화, TestFlight | 4절의 해당 정보 | 미국 등 |
 
 이 정보 이전을 원하지 않으면 해당 기능을 끄거나(캘린더, 사진 위치), 🔒로 시작하는 줄로 저장하거나, 앱을 쓰지 않을 수 있습니다. 이 경우 정리와 질문 기능은 쓸 수 없습니다.
 
@@ -116,6 +121,6 @@ Tuk is a personal "drawer" app. Your notes, links, photos and questions are stor
 - **What is sent**: When Tuk organizes an item or answers a question, only the text needed for that task (and a resized photo, if any) is sent through our server, which runs on Cloudflare Workers, to Anthropic's Claude API. Items starting with 🔒 are never sent anywhere.
 - **What our server keeps**: Our server does not store your content. It keeps only hashed connection keys and invite codes, device names, and daily request counts.
 - **Anthropic**: Anthropic deletes API inputs and outputs within 30 days, with exceptions such as legal or policy review, and does not use API data for model training by default.
-- **Directly from your phone**: Link previews contact the linked site directly. Photo locations are converted to addresses by Apple or Google. Calendar entries contain only the title, time, place and a link back to Tuk, and may sync to iCloud or Google. Update checks go to Expo.
+- **Directly from your phone**: Link previews and thumbnails are loaded from the linked site directly. "Open in Maps" sends the place name to Apple or Google Maps. Photo locations are converted to addresses by Apple or Google. Calendar entries contain only the title, time, place and a link back to Tuk, and may sync to iCloud or Google. Update checks go to Expo.
 - **Tracking**: Tuk has no ads, analytics or tracking.
 - **Your control**: You can export or delete your data in the app at any time. Contact: [email]
