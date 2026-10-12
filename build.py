@@ -17,7 +17,7 @@ page = f'''<!doctype html>
   <style>
     :root {{ --bg: #F3F3F0; --text: #161B1B; --sub: #646B6A; --line: #DADCD8; --accent: #2B8183; --head: #E9EAE6; }}
     @media (prefers-color-scheme: dark) {{ :root {{ --bg: #0B0F0F; --text: #EEF2F1; --sub: #97A3A1; --line: #263030; --accent: #4FB3AE; --head: #141A1A; }} }}
-    body {{ margin: 0; background: var(--bg); color: var(--text); font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; -webkit-text-size-adjust: 100%; }}
+    body {{ margin: 0; background: var(--bg); color: var(--text); font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; -webkit-text-size-adjust: 100%; word-break: keep-all; overflow-wrap: anywhere; }}
     main {{ max-width: 720px; margin: 0 auto; padding: 40px 16px 64px; }}
     h1 {{ font-size: 26px; margin: 0 0 4px; letter-spacing: -0.4px; }}
     h1 + p {{ color: var(--sub); font-size: 14px; margin-top: 0; }}
