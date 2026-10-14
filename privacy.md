@@ -1,6 +1,6 @@
 # 툭 개인정보 처리방침
 
-시행일: 2026년 10월 [일]
+시행일: 2026년 10월 15일
 
 툭(이하 "앱")은 생각, 링크, 사진, 일정을 던져 두면 알아서 정리하고, 물어보면 꺼내 주는 개인용 서랍 앱입니다. 이 방침은 앱이 어떤 정보를 어디에서 다루는지 설명합니다.
 
@@ -53,7 +53,7 @@
 | 하루 사용량 | 폰 이름, 날짜, 호출 횟수(내용 없음) | 90일 |
 | 잘못된 코드 시도 | 접속 IP의 해시값, 틀린 횟수, 시작 시각. 그리고 IP 없이 전체 틀린 횟수만 세는 기록 하나 | 성공하면 즉시, 아니면 하루 |
 
-"해시값"은 서버만 아는 비밀값을 섞어서, 원래 값을 알아낼 수 없게 바꾼 값입니다.
+"해시값"은 원래 값을 알아낼 수 없게 바꾼 값입니다. 연결 키는 길고 무작위인 값이라 해시만으로 되찾을 수 없고, 초대 코드와 IP처럼 짧은 값에는 서버만 아는 비밀값을 섞어서 해시합니다.
 
 서버 기록(로그)은 저장하지 않습니다. 문제를 확인할 때만 실시간으로 폰 이름, 요청 종류, 결과 상태, 오류 종류, 요청 크기를 봅니다. 서랍 내용은 기록에도 남지 않습니다.
 
@@ -109,8 +109,8 @@
 
 ## 10. 운영자와 연락처
 
-- 운영자: [이름]
-- 이메일: [연락 이메일]
+- 운영자 및 개인정보 보호책임자: 백승훈
+- 이메일: shelter0420@hanmail.net
 
 ---
 
@@ -123,4 +123,4 @@ Tuk is a personal "drawer" app. Your notes, links, photos and questions are stor
 - **Anthropic**: Anthropic deletes API inputs and outputs within 30 days, with exceptions such as legal or policy review, and does not use API data for model training by default.
 - **Directly from your phone**: Link previews and thumbnails are loaded from the linked site directly. "Open in Maps" sends the place name to Apple or Google Maps. Photo locations are converted to addresses by Apple or Google. Calendar entries contain only the title, time, place and a link back to Tuk, and may sync to iCloud or Google. Update checks go to Expo.
 - **Tracking**: Tuk has no ads, analytics or tracking.
-- **Your control**: You can export or delete your data in the app at any time. Contact: [email]
+- **Your control**: You can export or delete your data in the app at any time. Contact: shelter0420@hanmail.net
